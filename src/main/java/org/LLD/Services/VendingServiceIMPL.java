@@ -95,7 +95,6 @@ public class VendingServiceIMPL implements VendingService{
 
         List<ItemSpace> availableSlots = autowireUtil.getFindingUtil().findEmptySlotsGivenTypeQuantity(itemType,quantity,autowireRepository.getSlotRepository());
 
-
         return null;
     }
 }
