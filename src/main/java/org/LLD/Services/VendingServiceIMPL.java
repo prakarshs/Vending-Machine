@@ -77,15 +77,16 @@ public class VendingServiceIMPL implements VendingService{
 
         var rowrepo = autowireRepository.getRowRepository().getVendingRowMap();
 
-        for (Map.Entry<Character, VendingRow> rowEntry : rowrepo.entrySet() ){
-            System.out.println("For Row: "+rowEntry.getKey());
-            for (Map.Entry<Integer,VendingSlot>slotEntry : rowEntry.getValue().getSlots().entrySet()){
-                System.out.println("For Slot: "+slotEntry.getKey() + " With reference: "+slotEntry.getValue().getSlotId());
-                for (Map.Entry<Integer,ItemSpace> spaceEntry: slotEntry.getValue().getItemSpaces().entrySet()){
-                    System.out.println("Itemspace: "+spaceEntry.getValue().getItemSpaceRefId() + ", "+ slotEntry.getValue().getSlotType());
-                }
-            }
-        }
+//        for (Map.Entry<Character, VendingRow> rowEntry : rowrepo.entrySet() ){
+//            System.out.println("For Row: "+rowEntry.getKey());
+//            for (Map.Entry<Integer,VendingSlot>slotEntry : rowEntry.getValue().getSlots().entrySet()){
+//                System.out.println("For Slot: "+slotEntry.getKey() + " With reference: "+slotEntry.getValue().getSlotId());
+//                for (Map.Entry<Integer,ItemSpace> spaceEntry: slotEntry.getValue().getItemSpaces().entrySet()){
+//                    System.out.println("Itemspace: "+spaceEntry.getValue().getItemSpaceRefId() + ", "+ slotEntry.getValue().getSlotType());
+//                }
+//            }
+//        }
+
 
         return "Vending Machine "+vendingMachineId  +" Has Been Created With "+ numberOfRows+" Rows And "+ numberOfSlots +" Slots; Each With Capacity "+numberOfItemSpaces;
     }
@@ -93,7 +94,9 @@ public class VendingServiceIMPL implements VendingService{
     @Override
     public String addItems(ItemType itemType, Integer quantity) {
 
-        List<ItemSpace> availableSlots = autowireUtil.getFindingUtil().findEmptySlotsGivenTypeQuantity(itemType,quantity,autowireRepository.getSlotRepository());
+//        List<ItemSpace> availableSlots = autowireUtil.getFindingUtil().findEmptySlotsGivenTypeQuantity(itemType,quantity,autowireRepository.getSlotRepository());
+
+        autowireUtil.getDisplayUtil().allSpacesType(itemType,autowireRepository.getItemSpaceRepository());
 
         return null;
     }

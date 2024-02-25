@@ -17,9 +17,9 @@ public class FindingUtil {
         List<ItemSpace> freeSpaces = new ArrayList<>();
         if(slotRepository.getSlotMap().containsKey(itemType)){
            var slotsOfType = slotRepository.getSlotMap().get(itemType);
-
+           System.out.println("Item Type Has Slots: "+itemType);
            for (Map.Entry<Integer,VendingSlot> slotTypeEntry : slotsOfType.entrySet()){
-
+                System.out.println(slotTypeEntry.getValue());
                for (Map.Entry<Integer, ItemSpace> spaceEntry : slotTypeEntry.getValue().getItemSpaces().entrySet()){
                    if (spaceEntry.getValue().getItemOccupancy().equals(ItemOccupancy.vacant)){
                        freeSpaces.add(spaceEntry.getValue());
