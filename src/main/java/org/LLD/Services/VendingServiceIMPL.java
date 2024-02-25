@@ -7,6 +7,7 @@ import org.LLD.Entities.VendingMachineUnit;
 import org.LLD.Entities.VendingRow;
 import org.LLD.Entities.VendingSlot;
 import org.LLD.Helper.AutowireRepository;
+import org.LLD.Helper.AutowireUtil;
 import org.LLD.Utils.FindingUtil;
 import org.LLD.VendingMachine;
 
@@ -17,7 +18,7 @@ import java.util.Map;
 public class VendingServiceIMPL implements VendingService{
 
     AutowireRepository autowireRepository = new AutowireRepository();
-    FindingUtil findingUtil = new FindingUtil();
+    AutowireUtil autowireUtil = new AutowireUtil();
     @Override
     public String createVendingMachine(String vendingMachineId, Integer numberOfRows, Integer numberOfSlots, Integer numberOfItemSpaces) {
         Character vendingRowId = 'A';
@@ -92,7 +93,7 @@ public class VendingServiceIMPL implements VendingService{
     @Override
     public String addItems(ItemType itemType, Integer quantity) {
 
-        List<ItemSpace> availableSlots = findingUtil.findEmptySlotsGivenTypeQuantity(itemType,quantity,autowireRepository.getSlotRepository());
+        List<ItemSpace> availableSlots = autowireUtil.getFindingUtil().findEmptySlotsGivenTypeQuantity(itemType,quantity,autowireRepository.getSlotRepository());
 
 
         return null;
