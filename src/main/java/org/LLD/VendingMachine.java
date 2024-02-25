@@ -1,5 +1,6 @@
 package org.LLD;
 
+import org.LLD.Constants.Enums.DisplayFilter;
 import org.LLD.Constants.Enums.ItemType;
 import org.LLD.Services.VendingService;
 import org.LLD.Services.VendingServiceIMPL;
@@ -31,7 +32,15 @@ public class VendingMachine {
                     System.out.println(vendingService.addItems(ItemType.valueOf(input[1]), input[2], Integer.valueOf(input[3])));
                 }
                 break;
+                case Commands.DISPLAY : {
 
+                    if (input[1].equals(String.valueOf(DisplayFilter.all))){
+
+                        vendingService.displayAllItemsType(ItemType.valueOf(input[2]));
+
+                    }
+
+                }
                 default : {
                    System.out.println("!----- Invalid Command -----!");
                 }

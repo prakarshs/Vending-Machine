@@ -108,4 +108,9 @@ public class VendingServiceIMPL implements VendingService{
 
         return "Item "+itemName+" Of Type "+itemType+" Added To "+availableSpacesGivenQuantity.size()+" Spaces. Leftover Spaces: "+emptySpaces.size();
     }
+
+    @Override
+    public void displayAllItemsType(ItemType itemType) {
+        autowireUtil.getDisplayUtil().allSpacesType(itemType,autowireRepository.getItemSpaceRepository());
+    }
 }

@@ -7,4 +7,6 @@ public interface VendingService {
     String createVendingMachine(String vendingMachineId, Integer numberOfRows, Integer numberOfSlots, Integer numberOfItemSpaces);
 
     String addItems(ItemType itemType, String itemName ,Integer quantity);
+
+    void displayAllItemsType(ItemType itemType);
 }
