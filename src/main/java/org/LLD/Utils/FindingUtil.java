@@ -14,19 +14,16 @@ import java.util.Map;
 
 @Data
 public class FindingUtil {
-    public List<ItemSpace> listEmptySlotsGivenType(ItemType itemType, SlotRepository slotRepository) {
+    public List<ItemSpace> listEmptySpacesGivenType(ItemType itemType, ItemSpaceRepository itemSpaceRepository) {
         List<ItemSpace> freeSpaces = new ArrayList<>();
-        if(slotRepository.getSlotMap().containsKey(itemType)){
-           var slotsOfType = slotRepository.getSlotMap().get(itemType);
+        if(itemSpaceRepository.getItemSpaceMap().containsKey(itemType)){
+           var spacesOfType = itemSpaceRepository.getItemSpaceMap().get(itemType);
 
-           for (Map.Entry<String,VendingSlot> slotTypeEntry : slotsOfType.entrySet()){
-
-               for (Map.Entry<Integer, ItemSpace> spaceEntry : slotTypeEntry.getValue().getItemSpaces().entrySet()){
+               for (Map.Entry<Integer, ItemSpace> spaceEntry : spacesOfType.entrySet()){
                    if (spaceEntry.getValue().getItemOccupancy().equals(ItemOccupancy.vacant)){
                        freeSpaces.add(spaceEntry.getValue());
                    }
                }
-           }
         }
         else{
             System.out.println("!----- Item Type Invalid. Try WIth A Different ItemType. -----!");

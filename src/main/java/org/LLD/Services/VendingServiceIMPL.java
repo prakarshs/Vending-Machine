@@ -104,7 +104,7 @@ public class VendingServiceIMPL implements VendingService{
             });
         }
 
-        List<ItemSpace> emptySpaces = autowireUtil.getFindingUtil().listEmptySlotsGivenType(itemType,autowireRepository.getSlotRepository());
+        List<ItemSpace> emptySpaces = autowireUtil.getFindingUtil().listEmptySpacesGivenType(itemType,autowireRepository.getItemSpaceRepository());
 
         return "Item "+itemName+" Of Type "+itemType+" Added To "+availableSpacesGivenQuantity.size()+" Spaces. Leftover Spaces: "+emptySpaces.size();
     }
@@ -122,5 +122,10 @@ public class VendingServiceIMPL implements VendingService{
     @Override
     public void displaySlot(String slotId) {
         autowireUtil.getDisplayUtil().showSlot(slotId, autowireRepository.getSlotRepository());
+    }
+
+    @Override
+    public void showAllEmptySpaces() {
+        autowireUtil.getDisplayUtil().allEmptySpaces(autowireRepository.getItemSpaceRepository());
     }
 }

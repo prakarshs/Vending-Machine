@@ -24,15 +24,6 @@ public class DisplayUtil {
 
     }
 
-    public void allSlotsType(ItemType itemType, SlotRepository slotRepository) {
-        var slotOfType = slotRepository.getSlotMap().get(itemType);
-        System.out.println("Slots Of Type: " + itemType);
-        for (Map.Entry<String, VendingSlot> slotEntry : slotOfType.entrySet()) {
-
-            System.out.println(slotEntry.getKey() + "," + slotEntry.getKey());
-        }
-
-    }
 
     public void showRow(Character rowId, RowRepository rowRepository) {
 
@@ -79,5 +70,22 @@ public class DisplayUtil {
         }
         if(!found) System.out.println("!----- Invalid Slot ID -----!");
 
+    }
+
+    public void allEmptySpaces(ItemSpaceRepository itemSpaceRepository) {
+
+        for (Map.Entry<ItemType, Map<Integer,ItemSpace>> itemSpaceEntry : itemSpaceRepository.getItemSpaceMap().entrySet()){
+            System.out.println("For Item Type: "+itemSpaceEntry.getKey()+" These Are The Empty Spaces");
+            boolean flag = false;
+            for (Map.Entry<Integer,ItemSpace> spaceEntry : itemSpaceEntry.getValue().entrySet()){
+
+              if (spaceEntry.getValue().getItemOccupancy().equals(ItemOccupancy.vacant)){
+                  flag = true;
+                  System.out.println("Item Space ID: "+spaceEntry.getValue().getItemSpaceRefId());
+                  System.out.println("Item Space ID: "+spaceEntry.getValue().getItemOccupancy());
+                }
+            }
+            if(!flag) System.out.println("No Free Spaces For "+itemSpaceEntry.getKey());
+        }
     }
 }

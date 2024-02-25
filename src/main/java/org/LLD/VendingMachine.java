@@ -1,6 +1,7 @@
 package org.LLD;
 
 import org.LLD.Constants.Enums.DisplayFilter;
+import org.LLD.Constants.Enums.EmptySpaceFilter;
 import org.LLD.Constants.Enums.ItemType;
 import org.LLD.Services.VendingService;
 import org.LLD.Services.VendingServiceIMPL;
@@ -43,10 +44,21 @@ public class VendingMachine {
                         vendingService.displayRow(Character.valueOf(input[2].charAt(0)));
 
                     } else if (input[1].equals(String.valueOf(DisplayFilter.slot))) {
+
                         vendingService.displaySlot(input[2]);
+
+                    } else if (input[1].equals(String.valueOf(DisplayFilter.empty_spaces))) {
+
+                        if (input[2].equals(String.valueOf(EmptySpaceFilter.all))){
+
+                            vendingService.showAllEmptySpaces();
+
+                        } else if (input[2].equals(String.valueOf(EmptySpaceFilter.row))) {
+
+                        } else if (input[2].equals(String.valueOf(EmptySpaceFilter.slot))) {
+
+                        }
                     }
-
-
                 }
                 break;
                 default : {
