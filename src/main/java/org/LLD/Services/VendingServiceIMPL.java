@@ -30,7 +30,7 @@ public class VendingServiceIMPL implements VendingService{
                 ItemType spaceType = ItemType.Namkeen;
                 for (int itemSpaces = 1; itemSpaces <= numberOfItemSpaces; itemSpaces++){
                     ItemSpace itemSpace = ItemSpace.builder()
-                            .itemSpaceRefId(vendingRowId +"_"+ slots +"_"+itemSpaceIndex )
+                            .itemSpaceRefId(vendingRowId +"_"+ slots +"_"+itemSpaces )
                             .itemOccupancy(ItemOccupancy.vacant)
                             .rowId(vendingRowId)
                             .slotId(slots)
