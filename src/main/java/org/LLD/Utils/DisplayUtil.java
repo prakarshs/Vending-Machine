@@ -114,12 +114,14 @@ public class DisplayUtil {
     }
 
     public void typeEmptySpaces(List<ItemSpace> emptySpaces) {
+        if(!emptySpaces.isEmpty()) {
+            emptySpaces.stream().forEach(itemSpace -> {
 
-        emptySpaces.stream().forEach(itemSpace -> {
+                System.out.println("Item Space: " + itemSpace.getItemSpaceRefId());
 
-            System.out.println("Item Space: "+itemSpace.getItemSpaceRefId());
-
-        });
+            });
+        }
+        else System.out.println("No Empty Spaces Left For Item.");
 
     }
 
