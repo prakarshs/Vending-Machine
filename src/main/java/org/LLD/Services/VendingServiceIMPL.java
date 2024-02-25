@@ -71,6 +71,17 @@ public class VendingServiceIMPL implements VendingService{
                 .build();
         autowireRepository.getVendingMachineRepository().getVendingMachineMap().put(vendingMachineIndex,vendingMachineUnit);
 
+        var rowrepo = autowireRepository.getRowRepository().getVendingRowMap();
+
+        for (Map.Entry<Character, VendingRow> rowEntry : rowrepo.entrySet() ){
+            System.out.println("For Row: "+rowEntry.getKey());
+            for (Map.Entry<Integer,VendingSlot>slotEntry : rowEntry.getValue().getSlots().entrySet()){
+                System.out.println("For Slot: "+slotEntry.getKey() + " With reference: "+slotEntry.getValue().getSlotId());
+                for (Map.Entry<Integer,ItemSpace> spaceEntry: slotEntry.getValue().getItemSpaces().entrySet()){
+                    System.out.println("Itemspace: "+spaceEntry.getValue().getItemSpaceRefId());
+                }
+            }
+        }
 
         return "Vending Machine "+vendingMachineId  +" Has Been Created With "+ numberOfRows+" Rows And "+ numberOfSlots +" Slots; Each With Capacity "+numberOfItemSpaces;
     }
