@@ -6,7 +6,7 @@ import org.LLD.Entities.*;
 import org.LLD.Helper.AutowireRepository;
 import org.LLD.Helper.AutowireUtil;
 
-import java.util.HashMap;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +37,7 @@ public class VendingServiceIMPL implements VendingService{
                             .build();
 
                     if(rows == numberOfRows)spaceType = ItemType.Beverage;
-                    if(rows == numberOfRows - 1)spaceType = ItemType.Condiments;
+                    if(rows == numberOfRows - 1)spaceType = ItemType.Condiment;
                     if(rows < numberOfRows -1 && slots%2 == 0)spaceType = ItemType.Sweet;
                     if(rows < numberOfRows -1 && slots%2 == 1)spaceType = ItemType.Namkeen;
 
@@ -112,5 +112,10 @@ public class VendingServiceIMPL implements VendingService{
     @Override
     public void displayAllItemsType(ItemType itemType) {
         autowireUtil.getDisplayUtil().allSpacesType(itemType,autowireRepository.getItemSpaceRepository());
+    }
+
+    @Override
+    public void displayRow(Character rowId) {
+        autowireUtil.getDisplayUtil().showRow(rowId,autowireRepository.getRowRepository());
     }
 }

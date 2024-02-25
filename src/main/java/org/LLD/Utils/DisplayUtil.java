@@ -3,8 +3,10 @@ package org.LLD.Utils;
 import lombok.Data;
 import org.LLD.Constants.Enums.ItemType;
 import org.LLD.Entities.ItemSpace;
+import org.LLD.Entities.VendingRow;
 import org.LLD.Entities.VendingSlot;
 import org.LLD.Repositories.ItemSpaceRepository;
+import org.LLD.Repositories.RowRepository;
 import org.LLD.Repositories.SlotRepository;
 
 import java.util.ArrayList;
@@ -31,6 +33,30 @@ public class DisplayUtil {
 
             System.out.println(slotEntry.getKey()+","+slotEntry.getKey());
         }
+
+    }
+
+    public void showRow(Character rowId, RowRepository rowRepository) {
+
+        if(rowRepository.getVendingRowMap().containsKey(rowId)){
+            var rowWithId = rowRepository.getVendingRowMap().get(rowId);
+            System.out.println("Here Are Details For Row: "+rowId);
+            System.out.println("The Slots Are: ");
+            for (Map.Entry<Integer,VendingSlot> slotEntry : rowWithId.getSlots().entrySet()){
+
+               System.out.println("Slot Index: "+slotEntry.getKey());
+               System.out.println("Slot Id: "+slotEntry.getValue().getSlotId());
+               System.out.println("Slot Type: "+slotEntry.getValue().getSlotType());
+               System.out.println("Slot Quantity: "+slotEntry.getValue().getSlotQuantity());
+               for (Map.Entry<Integer,ItemSpace> itemSpaceEntry : slotEntry.getValue().getItemSpaces().entrySet()){
+                   System.out.println("Item Space ID: "+itemSpaceEntry.getValue().getItemSpaceRefId());
+                   System.out.println("Item Space Occupancy: "+itemSpaceEntry.getValue().getItemOccupancy());
+                   System.out.println("Item At Space: "+itemSpaceEntry.getValue().getItem().getItemName()", "+itemSpaceEntry.getValue().getItem().getItemType());
+               }
+            }
+
+        }
+        else System.out.println("!----- Invalid Row ID -----!");
 
     }
 }

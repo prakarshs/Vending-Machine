@@ -38,9 +38,15 @@ public class VendingMachine {
 
                         vendingService.displayAllItemsType(ItemType.valueOf(input[2]));
 
+                    } else if (input[1].equals(String.valueOf(DisplayFilter.row))) {
+
+                        vendingService.displayRow(Character.valueOf(input[2].charAt(0)));
+
                     }
 
+
                 }
+                break;
                 default : {
                    System.out.println("!----- Invalid Command -----!");
                 }

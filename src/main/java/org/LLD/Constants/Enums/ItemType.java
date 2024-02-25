@@ -1,5 +1,5 @@
 package org.LLD.Constants.Enums;
 
 public enum ItemType {
-    Beverage, Namkeen, Sweet, Condiments
+    Beverage, Namkeen, Sweet, Condiment
 }

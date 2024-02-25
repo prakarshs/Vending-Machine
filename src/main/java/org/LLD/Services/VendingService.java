@@ -9,4 +9,6 @@ public interface VendingService {
     String addItems(ItemType itemType, String itemName ,Integer quantity);
 
     void displayAllItemsType(ItemType itemType);
+
+    void displayRow(Character rowId);
 }
