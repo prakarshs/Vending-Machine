@@ -7,6 +7,7 @@ import org.LLD.Helper.AutowireRepository;
 import org.LLD.Helper.AutowireUtil;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,11 +22,11 @@ public class VendingServiceIMPL implements VendingService{
         Integer slotIndex = 1;
         Integer vendingMachineIndex = 1;
 
-        Map<Character, VendingRow> machineBuilt = new HashMap<>();
+        Map<Character, VendingRow> machineBuilt = new LinkedHashMap<>();
         for (int rows = 1; rows <= numberOfRows; rows++){
-            Map<Integer, VendingSlot> rowBuilt = new HashMap<>();
+            Map<Integer, VendingSlot> rowBuilt = new LinkedHashMap<>();
             for (int slots = 1; slots <= numberOfSlots; slots++){
-                Map<Integer, ItemSpace> slotBuilt = new HashMap<>();
+                Map<Integer, ItemSpace> slotBuilt = new LinkedHashMap<>();
                 ItemType spaceType = ItemType.Namkeen;
                 for (int itemSpaces = 1; itemSpaces <= numberOfItemSpaces; itemSpaces++){
                     ItemSpace itemSpace = ItemSpace.builder()

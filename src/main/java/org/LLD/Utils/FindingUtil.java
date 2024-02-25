@@ -25,7 +25,6 @@ public class FindingUtil {
                for (Map.Entry<Integer, ItemSpace> spaceEntry : slotTypeEntry.getValue().getItemSpaces().entrySet()){
                    if (spaceEntry.getValue().getItemOccupancy().equals(ItemOccupancy.vacant)){
                        count++;
-                       System.out.println(spaceEntry.getKey()+","+spaceEntry.getValue());
                        freeSpaces.add(spaceEntry.getValue());
                    }
                }
@@ -44,12 +43,13 @@ public class FindingUtil {
         List<ItemSpace> freeSpaces = new ArrayList<>();
         Integer count = 0;
         if(spaceRepository.getItemSpaceMap().containsKey(itemType)){
-           var spacesOfType = spaceRepository.getItemSpaceMap().get(itemType);
+           Map<Integer,ItemSpace> spacesOfType = spaceRepository.getItemSpaceMap().get(itemType);
 
            for (Map.Entry<Integer,ItemSpace> itemSpaceEntry : spacesOfType.entrySet()){
 
                    if (itemSpaceEntry.getValue().getItemOccupancy().equals(ItemOccupancy.vacant)){
                        count++;
+                       System.out.println(itemSpaceEntry.getKey()+","+itemSpaceEntry.getValue());
                        if(count <= quantity) {
                            freeSpaces.add(itemSpaceEntry.getValue());
                        }

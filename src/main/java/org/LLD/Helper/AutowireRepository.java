@@ -11,14 +11,15 @@ import org.LLD.Repositories.SlotRepository;
 import org.LLD.Repositories.VendingMachineRepository;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Data
 public class AutowireRepository {
-    private Map<ItemType, Map<Integer, ItemSpace>> itemMapDefault = new HashMap<>();
+    private Map<ItemType, Map<Integer, ItemSpace>> itemMapDefault = new LinkedHashMap<>();
     ItemSpaceRepository itemSpaceRepository = new ItemSpaceRepository(itemMapDefault);
     RowRepository rowRepository = new RowRepository();
-    private Map<ItemType,Map<Integer, VendingSlot>> slotMapDefault = new HashMap<>();
+    private Map<ItemType,Map<Integer, VendingSlot>> slotMapDefault = new LinkedHashMap<>();
     SlotRepository slotRepository = new SlotRepository(slotMapDefault);
     VendingMachineRepository vendingMachineRepository = new VendingMachineRepository();
 }
