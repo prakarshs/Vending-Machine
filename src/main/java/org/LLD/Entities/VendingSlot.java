@@ -16,5 +16,5 @@ public class VendingSlot {
     private String slotId;
     private Integer slotQuantity;
     private ItemType slotType;
-    private Map<Integer, Item> items;
+    private Map<Integer, ItemSpace> itemSpaces;
 }

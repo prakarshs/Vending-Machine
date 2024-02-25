@@ -15,5 +15,5 @@ import java.util.Map;
 @AllArgsConstructor
 @Builder
 public class RowRepository {
-    private Map<Integer, VendingRow> vendingRowMap = new HashMap<>();
+    private Map<Character, VendingRow> vendingRowMap = new HashMap<>();
 }

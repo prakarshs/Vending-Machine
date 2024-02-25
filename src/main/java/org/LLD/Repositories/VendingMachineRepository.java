@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.LLD.Entities.VendingMachineUnit;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -13,5 +14,5 @@ import java.util.Map;
 @AllArgsConstructor
 @Builder
 public class VendingMachineRepository {
-    private Map<Integer, VendingMachineUnit> vendingMachineMap = getVendingMachineMap();
+    private Map<Integer, VendingMachineUnit> vendingMachineMap = new HashMap<>();
 }

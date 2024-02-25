@@ -13,7 +13,6 @@ import java.util.Map;
 @AllArgsConstructor
 @Builder
 public class VendingRow {
-    private Character vendingId;
-    private Integer rowSize;
+    private Character vendingRowId;
     private Map<Integer, VendingSlot> slots;
 }

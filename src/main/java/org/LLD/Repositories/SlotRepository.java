@@ -22,7 +22,6 @@ public class SlotRepository {
         for(ItemType itemType : ItemType.values()){
             slotMap.put(itemType,new HashMap<>());
         }
-
         this.slotMap = slotMap;
     }
 }

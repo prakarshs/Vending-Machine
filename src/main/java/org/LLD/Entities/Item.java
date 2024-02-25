@@ -13,6 +13,4 @@ import org.LLD.Constants.Enums.ItemType;
 public class Item {
     private Integer itemId;
     private ItemType itemType;
-    private Character rowId;
-    private Integer slotId;
 }
