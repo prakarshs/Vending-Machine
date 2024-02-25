@@ -5,8 +5,6 @@ import org.LLD.Constants.Enums.ItemType;
 import org.LLD.Entities.*;
 import org.LLD.Helper.AutowireRepository;
 import org.LLD.Helper.AutowireUtil;
-import org.LLD.Utils.FindingUtil;
-import org.LLD.VendingMachine;
 
 import java.util.HashMap;
 import java.util.List;
@@ -92,7 +90,7 @@ public class VendingServiceIMPL implements VendingService{
     @Override
     public String addItems(ItemType itemType, String itemName, Integer quantity) {
 
-        List<ItemSpace> availableSpaces = autowireUtil.getFindingUtil().findEmptySpacesGivenTypeQuantity(itemType,quantity,autowireRepository.getItemSpaceRepository());
+        List<ItemSpace> availableSpaces = autowireUtil.getFindingUtil().listEmptySpacesGivenTypeQuantity(itemType,quantity,autowireRepository.getItemSpaceRepository());
 
         if(availableSpaces!=null){
             availableSpaces.stream().forEach(itemSpace -> {
@@ -102,10 +100,11 @@ public class VendingServiceIMPL implements VendingService{
                         .build();
                 itemSpace.setItem(item);
                 itemSpace.setItemOccupancy(ItemOccupancy.filled);
-                System.out.println(itemSpace);
             });
         }
 
-        return "Item "+itemName+" Of Type "+itemType+"  Added To "+availableSpaces.size()+" Spaces.";
+        List<ItemSpace> availableSpaces2 = autowireUtil.getFindingUtil().listEmptySlotsGivenType(itemType,autowireRepository.getSlotRepository());
+
+        return "Item "+itemName+" Of Type "+itemType+"  Added To "+availableSpaces.size()+" Spaces. Leftover Spaces: "+availableSpaces2.size();
     }
 }

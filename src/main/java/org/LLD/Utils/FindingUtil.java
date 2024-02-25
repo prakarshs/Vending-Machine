@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Data
 public class FindingUtil {
-    public List<ItemSpace> findEmptySlotsGivenTypeQuantity(ItemType itemType, Integer quantity, SlotRepository slotRepository) {
+    public List<ItemSpace> listEmptySlotsGivenType(ItemType itemType, SlotRepository slotRepository) {
         List<ItemSpace> freeSpaces = new ArrayList<>();
         Integer count = 0;
         if(slotRepository.getSlotMap().containsKey(itemType)){
@@ -25,17 +25,13 @@ public class FindingUtil {
                for (Map.Entry<Integer, ItemSpace> spaceEntry : slotTypeEntry.getValue().getItemSpaces().entrySet()){
                    if (spaceEntry.getValue().getItemOccupancy().equals(ItemOccupancy.vacant)){
                        count++;
-                       if(count <= quantity) {
-                           freeSpaces.add(spaceEntry.getValue());
-                       }
-                       else break;
+                       System.out.println(spaceEntry.getKey()+","+spaceEntry.getValue());
+                       freeSpaces.add(spaceEntry.getValue());
                    }
                }
            }
 
-           if (freeSpaces.size() < quantity){
-               System.out.printf("!----- Not Enough Space. %d Items Left -----!",(quantity-freeSpaces.size()));
-           }
+//           freeSpaces.forEach(System.out::println);
         }
         else{
             System.out.println("!----- Item Type Invalid. Try WIth A Different ItemType. -----!");
@@ -44,7 +40,7 @@ public class FindingUtil {
     return freeSpaces;
     }
 
-    public List<ItemSpace> findEmptySpacesGivenTypeQuantity(ItemType itemType, Integer quantity, ItemSpaceRepository spaceRepository) {
+    public List<ItemSpace> listEmptySpacesGivenTypeQuantity(ItemType itemType, Integer quantity, ItemSpaceRepository spaceRepository) {
         List<ItemSpace> freeSpaces = new ArrayList<>();
         Integer count = 0;
         if(spaceRepository.getItemSpaceMap().containsKey(itemType)){
@@ -63,7 +59,7 @@ public class FindingUtil {
            }
 
            if (freeSpaces.size() < quantity){
-               System.out.printf("!----- Not Enough Space. %d Items Left -----!",(quantity-freeSpaces.size()));
+               System.out.printf("!----- Not Enough Space. %d Items Left -----!\n",(quantity-freeSpaces.size()));
            }
         }
         else{
