@@ -82,7 +82,7 @@ public class VendingServiceIMPL implements VendingService{
             for (Map.Entry<Integer,VendingSlot>slotEntry : rowEntry.getValue().getSlots().entrySet()){
                 System.out.println("For Slot: "+slotEntry.getKey() + " With reference: "+slotEntry.getValue().getSlotId());
                 for (Map.Entry<Integer,ItemSpace> spaceEntry: slotEntry.getValue().getItemSpaces().entrySet()){
-                    System.out.println("Itemspace: "+spaceEntry.getValue().getItemSpaceRefId());
+                    System.out.println("Itemspace: "+spaceEntry.getValue().getItemSpaceRefId() + ", "+ slotEntry.getValue().getSlotType());
                 }
             }
         }

@@ -26,6 +26,10 @@ public class FindingUtil {
                    }
                }
            }
+           freeSpaces.stream().forEach(space->{
+               System.out.println(space.getItemSpaceRefId());
+           });
+
            if (freeSpaces.size() < quantity){
                System.out.printf("!----- Not Enough Space. %d Items Left -----!",(quantity-freeSpaces.size()));
            }
