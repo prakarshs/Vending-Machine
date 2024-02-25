@@ -16,7 +16,6 @@ import java.util.Map;
 public class FindingUtil {
     public List<ItemSpace> listEmptySlotsGivenType(ItemType itemType, SlotRepository slotRepository) {
         List<ItemSpace> freeSpaces = new ArrayList<>();
-        Integer count = 0;
         if(slotRepository.getSlotMap().containsKey(itemType)){
            var slotsOfType = slotRepository.getSlotMap().get(itemType);
 
@@ -24,13 +23,10 @@ public class FindingUtil {
 
                for (Map.Entry<Integer, ItemSpace> spaceEntry : slotTypeEntry.getValue().getItemSpaces().entrySet()){
                    if (spaceEntry.getValue().getItemOccupancy().equals(ItemOccupancy.vacant)){
-                       count++;
                        freeSpaces.add(spaceEntry.getValue());
                    }
                }
            }
-
-//           freeSpaces.forEach(System.out::println);
         }
         else{
             System.out.println("!----- Item Type Invalid. Try WIth A Different ItemType. -----!");
@@ -49,15 +45,12 @@ public class FindingUtil {
 
                    if (itemSpaceEntry.getValue().getItemOccupancy().equals(ItemOccupancy.vacant)){
                        count++;
-                       System.out.println(itemSpaceEntry.getKey()+","+itemSpaceEntry.getValue());
                        if(count <= quantity) {
                            freeSpaces.add(itemSpaceEntry.getValue());
                        }
                        else break;
-
                }
            }
-
            if (freeSpaces.size() < quantity){
                System.out.printf("!----- Not Enough Space. %d Items Left -----!\n",(quantity-freeSpaces.size()));
            }

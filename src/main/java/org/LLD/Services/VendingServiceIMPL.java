@@ -91,10 +91,10 @@ public class VendingServiceIMPL implements VendingService{
     @Override
     public String addItems(ItemType itemType, String itemName, Integer quantity) {
 
-        List<ItemSpace> availableSpaces = autowireUtil.getFindingUtil().listEmptySpacesGivenTypeQuantity(itemType,quantity,autowireRepository.getItemSpaceRepository());
+        List<ItemSpace> availableSpacesGivenQuantity = autowireUtil.getFindingUtil().listEmptySpacesGivenTypeQuantity(itemType,quantity,autowireRepository.getItemSpaceRepository());
 
-        if(availableSpaces!=null){
-            availableSpaces.stream().forEach(itemSpace -> {
+        if(availableSpacesGivenQuantity!=null){
+            availableSpacesGivenQuantity.stream().forEach(itemSpace -> {
                 Item item = Item.builder()
                         .itemName(itemName)
                         .itemType(itemType)
@@ -104,8 +104,8 @@ public class VendingServiceIMPL implements VendingService{
             });
         }
 
-        List<ItemSpace> availableSpaces2 = autowireUtil.getFindingUtil().listEmptySlotsGivenType(itemType,autowireRepository.getSlotRepository());
+        List<ItemSpace> emptySpaces = autowireUtil.getFindingUtil().listEmptySlotsGivenType(itemType,autowireRepository.getSlotRepository());
 
-        return "Item "+itemName+" Of Type "+itemType+"  Added To "+availableSpaces.size()+" Spaces. Leftover Spaces: "+availableSpaces2.size();
+        return "Item "+itemName+" Of Type "+itemType+" Added To "+availableSpacesGivenQuantity.size()+" Spaces. Leftover Spaces: "+emptySpaces.size();
     }
 }

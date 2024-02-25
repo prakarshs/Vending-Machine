@@ -31,6 +31,7 @@ public class VendingMachine {
                     System.out.println(vendingService.addItems(ItemType.valueOf(input[1]), input[2], Integer.valueOf(input[3])));
                 }
                 break;
+
                 default : {
                    System.out.println("!----- Invalid Command -----!");
                 }
