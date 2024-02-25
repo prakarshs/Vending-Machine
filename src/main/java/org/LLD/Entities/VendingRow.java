@@ -14,5 +14,5 @@ import java.util.Map;
 @Builder
 public class VendingRow {
     private Character vendingRowId;
-    private Map<Integer, VendingSlot> slots;
+    private Map<String, VendingSlot> slots;
 }

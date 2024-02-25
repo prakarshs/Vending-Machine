@@ -19,7 +19,7 @@ public class FindingUtil {
         if(slotRepository.getSlotMap().containsKey(itemType)){
            var slotsOfType = slotRepository.getSlotMap().get(itemType);
 
-           for (Map.Entry<Integer,VendingSlot> slotTypeEntry : slotsOfType.entrySet()){
+           for (Map.Entry<String,VendingSlot> slotTypeEntry : slotsOfType.entrySet()){
 
                for (Map.Entry<Integer, ItemSpace> spaceEntry : slotTypeEntry.getValue().getItemSpaces().entrySet()){
                    if (spaceEntry.getValue().getItemOccupancy().equals(ItemOccupancy.vacant)){

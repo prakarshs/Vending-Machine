@@ -24,7 +24,7 @@ public class VendingServiceIMPL implements VendingService{
 
         Map<Character, VendingRow> machineBuilt = new LinkedHashMap<>();
         for (int rows = 1; rows <= numberOfRows; rows++){
-            Map<Integer, VendingSlot> rowBuilt = new LinkedHashMap<>();
+            Map<String, VendingSlot> rowBuilt = new LinkedHashMap<>();
             for (int slots = 1; slots <= numberOfSlots; slots++){
                 Map<Integer, ItemSpace> slotBuilt = new LinkedHashMap<>();
                 ItemType spaceType = ItemType.Namkeen;
@@ -53,8 +53,8 @@ public class VendingServiceIMPL implements VendingService{
                         .slotQuantity(numberOfItemSpaces)
                         .slotType(spaceType)
                         .build();
-                rowBuilt.put(slots,vendingSlot);
-                autowireRepository.getSlotRepository().getSlotMap().get(spaceType).put(slotIndex,vendingSlot);
+                rowBuilt.put(vendingRowId +"_"+ slots,vendingSlot);
+                autowireRepository.getSlotRepository().getSlotMap().get(spaceType).put(vendingRowId +"_"+ slots,vendingSlot);
                 slotIndex++;
             }
             VendingRow vendingRow = VendingRow.builder()
@@ -117,5 +117,10 @@ public class VendingServiceIMPL implements VendingService{
     @Override
     public void displayRow(Character rowId) {
         autowireUtil.getDisplayUtil().showRow(rowId,autowireRepository.getRowRepository());
+    }
+
+    @Override
+    public void displaySlot(String slotId) {
+        autowireUtil.getDisplayUtil().showSlot(slotId, autowireRepository.getSlotRepository());
     }
 }

@@ -16,9 +16,9 @@ import java.util.Map;
 @NoArgsConstructor
 @Builder
 public class SlotRepository {
-    private Map<ItemType,Map<Integer,VendingSlot>> slotMap = new LinkedHashMap<>();
+    private Map<ItemType,Map<String,VendingSlot>> slotMap = new LinkedHashMap<>();
 
-    public SlotRepository(Map<ItemType,Map<Integer,VendingSlot>> slotMap){
+    public SlotRepository(Map<ItemType,Map<String,VendingSlot>> slotMap){
 
         for(ItemType itemType : ItemType.values()){
             slotMap.put(itemType,new LinkedHashMap<>());

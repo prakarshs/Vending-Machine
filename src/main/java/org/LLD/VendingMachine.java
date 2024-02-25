@@ -42,6 +42,8 @@ public class VendingMachine {
 
                         vendingService.displayRow(Character.valueOf(input[2].charAt(0)));
 
+                    } else if (input[1].equals(String.valueOf(DisplayFilter.slot))) {
+                        vendingService.displaySlot(input[2]);
                     }
 
 

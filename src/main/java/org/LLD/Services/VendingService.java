@@ -11,4 +11,5 @@ public interface VendingService {
     void displayAllItemsType(ItemType itemType);
 
     void displayRow(Character rowId);
+    void displaySlot(String slotId);
 }

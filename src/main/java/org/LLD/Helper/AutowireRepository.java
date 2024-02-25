@@ -19,7 +19,7 @@ public class AutowireRepository {
     private Map<ItemType, Map<Integer, ItemSpace>> itemMapDefault = new LinkedHashMap<>();
     ItemSpaceRepository itemSpaceRepository = new ItemSpaceRepository(itemMapDefault);
     RowRepository rowRepository = new RowRepository();
-    private Map<ItemType,Map<Integer, VendingSlot>> slotMapDefault = new LinkedHashMap<>();
+    private Map<ItemType,Map<String, VendingSlot>> slotMapDefault = new LinkedHashMap<>();
     SlotRepository slotRepository = new SlotRepository(slotMapDefault);
     VendingMachineRepository vendingMachineRepository = new VendingMachineRepository();
 }
