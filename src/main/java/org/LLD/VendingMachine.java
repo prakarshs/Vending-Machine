@@ -57,7 +57,13 @@ public class VendingMachine {
 
                             vendingService.showRowEmptySpaces(input[3].charAt(0));
 
-                        } else if (input[2].equals(String.valueOf(EmptySpaceFilter.slot))) {
+                        } else if (input[2].equals(String.valueOf(EmptySpaceFilter.item_type))) {
+                            System.out.println("hi");
+                            vendingService.showTypeEmptySpaces(ItemType.valueOf(input[3]));
+
+                        } else if (input[2].equals(String.valueOf(EmptySpaceFilter.slot))){
+
+                            vendingService.showSlotEmptySpaces(input[3]);
 
                         }
                     }

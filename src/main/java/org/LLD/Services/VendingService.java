@@ -16,4 +16,8 @@ public interface VendingService {
     void showAllEmptySpaces();
 
     void showRowEmptySpaces(Character rowId);
+
+    void showTypeEmptySpaces(ItemType itemType);
+
+    void showSlotEmptySpaces(String slotId);
 }

@@ -133,4 +133,19 @@ public class VendingServiceIMPL implements VendingService{
     public void showRowEmptySpaces(Character rowId) {
         autowireUtil.getDisplayUtil().rowEmptySpaces(rowId,autowireRepository.getRowRepository());
     }
+
+    @Override
+    public void showTypeEmptySpaces(ItemType itemType) {
+        List<ItemSpace> emptySpaces = autowireUtil.getFindingUtil().listEmptySpacesGivenType(itemType,autowireRepository.getItemSpaceRepository());
+
+        autowireUtil.getDisplayUtil().typeEmptySpaces(emptySpaces);
+
+    }
+
+    @Override
+    public void showSlotEmptySpaces(String slotId) {
+        autowireUtil.getDisplayUtil().slotEmptySpaces(slotId,autowireRepository.getSlotRepository());
+    }
+
+
 }
