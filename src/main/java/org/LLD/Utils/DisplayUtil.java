@@ -4,6 +4,7 @@ import lombok.Data;
 import org.LLD.Constants.Enums.ItemOccupancy;
 import org.LLD.Constants.Enums.ItemType;
 import org.LLD.Entities.ItemSpace;
+import org.LLD.Entities.VendingRow;
 import org.LLD.Entities.VendingSlot;
 import org.LLD.Repositories.ItemSpaceRepository;
 import org.LLD.Repositories.RowRepository;
@@ -87,5 +88,28 @@ public class DisplayUtil {
             }
             if(!flag) System.out.println("No Free Spaces For "+itemSpaceEntry.getKey());
         }
+    }
+
+    public void rowEmptySpaces(Character rowId,RowRepository rowRepository) {
+        if(rowRepository.getVendingRowMap().containsKey(rowId)){
+            var rowWithId = rowRepository.getVendingRowMap().get(rowId);
+            for (Map.Entry<String,VendingSlot> slotEntry : rowWithId.getSlots().entrySet()){
+                System.out.println("For Slot "+slotEntry.getKey()+" Of Type "+slotEntry.getValue().getSlotType()+" These Spaces Are Vacant: ");
+                boolean flag = false;
+                for (Map.Entry<Integer,ItemSpace> spaceEntry : slotEntry.getValue().getItemSpaces().entrySet()){
+
+                    if(spaceEntry.getValue().getItemOccupancy().equals(ItemOccupancy.vacant)){
+                        flag = true;
+                        System.out.println("ItemSpace Id: "+spaceEntry.getValue().getItemSpaceRefId());
+                        System.out.println("ItemSpace Id: "+spaceEntry.getValue().getItemOccupancy());
+                    }
+                }
+                if(!flag) System.out.println("No Free Spaces In Slot "+slotEntry.getKey());
+            }
+        }
+        else System.out.println("!----- Invalid Row ID -----!");
+
+
+
     }
 }
