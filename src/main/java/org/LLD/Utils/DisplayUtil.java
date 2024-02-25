@@ -4,6 +4,7 @@ import lombok.Data;
 import org.LLD.Constants.Enums.ItemType;
 import org.LLD.Entities.ItemSpace;
 import org.LLD.Repositories.ItemSpaceRepository;
+import org.LLD.Repositories.SlotRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,4 +23,10 @@ public class DisplayUtil {
         System.out.println(count);
     }
 
+    public void allSlotsType(ItemType itemType, SlotRepository slotRepository) {
+
+        var slotOfType = slotRepository.getSlotMap().get(itemType);
+        System.out.println(slotOfType);
+
+    }
 }

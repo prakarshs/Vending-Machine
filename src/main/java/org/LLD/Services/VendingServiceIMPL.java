@@ -59,6 +59,7 @@ public class VendingServiceIMPL implements VendingService{
                         .build();
                 rowBuilt.put(slots,vendingSlot);
                 autowireRepository.getSlotRepository().getSlotMap().get(spaceType).put(slotIndex,vendingSlot);
+                slotIndex++;
             }
             VendingRow vendingRow = VendingRow.builder()
                     .vendingRowId(vendingRowId)
@@ -96,8 +97,8 @@ public class VendingServiceIMPL implements VendingService{
 
 //        List<ItemSpace> availableSlots = autowireUtil.getFindingUtil().findEmptySlotsGivenTypeQuantity(itemType,quantity,autowireRepository.getSlotRepository());
 
-        autowireUtil.getDisplayUtil().allSpacesType(itemType,autowireRepository.getItemSpaceRepository());
-
+//        autowireUtil.getDisplayUtil().allSpacesType(itemType,autowireRepository.getItemSpaceRepository());
+        autowireUtil.getDisplayUtil().allSlotsType(itemType,autowireRepository.getSlotRepository());
         return null;
     }
 }
