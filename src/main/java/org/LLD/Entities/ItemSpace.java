@@ -12,6 +12,7 @@ import org.LLD.Constants.Enums.ItemOccupancy;
 @Builder
 public class ItemSpace {
     private String itemSpaceRefId;
+    private Item item;
     private Character rowId;
     private Integer slotId;
     private ItemOccupancy itemOccupancy;

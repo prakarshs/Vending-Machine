@@ -28,7 +28,7 @@ public class VendingMachine {
                 }
                 break;
                 case Commands.ADD_ITEMS : {
-                    System.out.println(vendingService.addItems(ItemType.valueOf(input[1]),Integer.valueOf(input[2])));
+                    System.out.println(vendingService.addItems(ItemType.valueOf(input[1]), input[2], Integer.valueOf(input[3])));
                 }
                 break;
                 default : {

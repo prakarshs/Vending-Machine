@@ -11,6 +11,6 @@ import org.LLD.Constants.Enums.ItemType;
 @NoArgsConstructor
 @SuperBuilder
 public class Item {
-    private Integer itemId;
+    private String itemName;
     private ItemType itemType;
 }

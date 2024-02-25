@@ -2,10 +2,7 @@ package org.LLD.Services;
 
 import org.LLD.Constants.Enums.ItemOccupancy;
 import org.LLD.Constants.Enums.ItemType;
-import org.LLD.Entities.ItemSpace;
-import org.LLD.Entities.VendingMachineUnit;
-import org.LLD.Entities.VendingRow;
-import org.LLD.Entities.VendingSlot;
+import org.LLD.Entities.*;
 import org.LLD.Helper.AutowireRepository;
 import org.LLD.Helper.AutowireUtil;
 import org.LLD.Utils.FindingUtil;
@@ -76,8 +73,8 @@ public class VendingServiceIMPL implements VendingService{
                 .build();
         autowireRepository.getVendingMachineRepository().getVendingMachineMap().put(vendingMachineIndex,vendingMachineUnit);
 
-        var rowrepo = autowireRepository.getRowRepository().getVendingRowMap();
-
+//        var rowrepo = autowireRepository.getRowRepository().getVendingRowMap();
+//
 //        for (Map.Entry<Character, VendingRow> rowEntry : rowrepo.entrySet() ){
 //            System.out.println("For Row: "+rowEntry.getKey());
 //            for (Map.Entry<Integer,VendingSlot>slotEntry : rowEntry.getValue().getSlots().entrySet()){
@@ -93,12 +90,22 @@ public class VendingServiceIMPL implements VendingService{
     }
 
     @Override
-    public String addItems(ItemType itemType, Integer quantity) {
+    public String addItems(ItemType itemType, String itemName, Integer quantity) {
 
-//        List<ItemSpace> availableSlots = autowireUtil.getFindingUtil().findEmptySlotsGivenTypeQuantity(itemType,quantity,autowireRepository.getSlotRepository());
+        List<ItemSpace> availableSpaces = autowireUtil.getFindingUtil().findEmptySpacesGivenTypeQuantity(itemType,quantity,autowireRepository.getItemSpaceRepository());
 
-//        autowireUtil.getDisplayUtil().allSpacesType(itemType,autowireRepository.getItemSpaceRepository());
-        autowireUtil.getDisplayUtil().allSlotsType(itemType,autowireRepository.getSlotRepository());
-        return null;
+        if(availableSpaces!=null){
+            availableSpaces.stream().forEach(itemSpace -> {
+                Item item = Item.builder()
+                        .itemName(itemName)
+                        .itemType(itemType)
+                        .build();
+                itemSpace.setItem(item);
+                itemSpace.setItemOccupancy(ItemOccupancy.filled);
+                System.out.println(itemSpace);
+            });
+        }
+
+        return "Item "+itemName+" Of Type "+itemType+"  Added To "+availableSpaces.size()+" Spaces.";
     }
 }
